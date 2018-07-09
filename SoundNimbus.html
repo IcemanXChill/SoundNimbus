@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SoundNimbus</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/SoundNimbus.css">
+	
+	<!-- Load the Paper.js library -->
+	<script type="text/javascript" src="paper-full.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.9/howler.js"> </script>
+	<script type="text/paperscript" canvas="myCanvas">
+	
+		Howler.volume(0.4);
+
+		var keyData = {
+			a: {
+				sound: new Howl({
+				 src: ['assets/sounds/what.wav'],
+				})
+			},
+			d: {
+				sound: new Howl({
+				 src: ['assets/sounds/yeah.wav'] 
+				})
+			},
+			s: {
+				sound: new Howl({
+				 src: ['assets/sounds/letsgetcrunk.wav'] 
+				})
+			},
+			f: {
+				sound: new Howl({
+				 src: ['assets/sounds/okay.wav'] 
+				})
+			},
+			g: {
+				sound: new Howl({
+				 src: ['assets/sounds/ay.wav'] 
+				})
+			},
+			z: {
+				sound: new Howl({
+				 src: ['assets/sounds/abtroz/MetUp1.wav'] 
+				})
+			},
+			x: {
+				sound: new Howl({
+				 src: ['assets/sounds/abtroz/MetUp2.wav'] 
+				})
+			},
+			c: {
+				sound: new Howl({
+				 src: ['assets/sounds/abtroz/MetUp3.wav'] 
+				})
+			},
+			v: {
+				sound: new Howl({
+				 src: ['assets/sounds/abtroz/MetUp4.wav'] 
+				})
+			},
+			b: {
+				sound: new Howl({
+				 src: ['assets/sounds/abtroz/MetUp5.wav'] 
+				})
+			},
+			n: {
+				sound: new Howl({
+				 src: ['assets/sounds/abtroz/MetUp6.wav'] 
+				})
+			},
+			m: {
+				sound: new Howl({
+				 src: ['assets/sounds/abtroz/MetUp7.wav'] 
+				})
+			},
+			q: {
+				sound: new Howl({
+				 src: ['assets/sounds/abtroz/uhrise.wav'] 
+				})
+			},
+			w: {
+				sound: new Howl({
+				 src: ['assets/sounds/abtroz/iamalba.wav'] 
+				})
+			},
+			e: {
+				sound: new Howl({
+				 src: ['assets/sounds/abtroz/static.wav'] 
+				})
+			}
+		}
+
+var circles = [];
+
+	function onKeyDown(event){
+		var maxPoint = new Point(view.size.width, view.size.height);
+		var randomPoint = Point.random();
+		var point = maxPoint * randomPoint;
+		var newCircle = new Path.Circle (point, 100)
+		newCircle.fillColor = "blue";
+		circles.push(newCircle);
+
+		if (keyData[event.key]) {
+	keyData[event.key].sound.play();
+		}
+
+
+
+
+}
+
+
+function onFrame(event){
+	for(var i = 0; i<circles.length; i++){
+		circles[i].fillColor.hue += 10;
+		circles[i].scale(.99);
+		if(circles[i].area < 1){
+			circles[i].remove(); // remove the circle from the canvas
+			circles.splice(i, 1); // remove the circle from the array
+			i--; // decrement i so that the loop doesn't skip a circle because of .splice()
+
+		  }
+	}
+
+}
+
+
+</script>
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+
+	<script type="text/javascript" src="assets/js/SoundNimbus.js"></script>
+</body>
+</html>
