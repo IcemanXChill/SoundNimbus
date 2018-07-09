@@ -5,5 +5,7 @@ See it in action: http://www.treyverse.com/SoundNimbus/SoundNimbus.html
 
 # Controls
 Notes: z, x, c, v, b, n
+
 Celebrity vocals: a, s, d, f, g
+
 Musical clips: q, w, e
